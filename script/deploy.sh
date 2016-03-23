@@ -3,6 +3,7 @@ GIT_REV="$(git rev-parse HEAD)"
 S3_PATH="s3://elasticbeanstalk-us-east-1-252420778140/$GIT_REV.zip"
 EB_VERSION="$(git rev-parse --short HEAD)"
 
+npm run build
 cd target
 npm install --production
 
