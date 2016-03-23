@@ -1,4 +1,4 @@
-# Master repo for SuperFeed [![Stories in Ready](https://badge.waffle.io/SuperFeed/SuperFeed.svg?label=ready&title=Ready)](http://waffle.io/SuperFeed/SuperFeed)
+# Master repo for SuperFeed [![Stories in Ready](https://badge.waffle.io/SuperFeed/SuperFeed.svg?label=ready&title=Ready)](http://waffle.io/SuperFeed/SuperFeed) [![Circle CI](https://circleci.com/gh/SuperFeed/SuperFeed.svg?style=svg)](https://circleci.com/gh/SuperFeed/SuperFeed)
 
 ## Running the site
 
