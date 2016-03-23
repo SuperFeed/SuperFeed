@@ -1,7 +1,0 @@
-git clone https://github.com/SuperFeed/Front.git
-cd Front
-npm i -g gulp http-server mkdirp
-npm i
-npm run build
-cd target
-http-server -p 80 -o

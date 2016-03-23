@@ -18,7 +18,7 @@ export default class Login extends Component {
     return <FacebookLogin
       appId={APP_ID}
       autoLoad={this.props.auto !== undefined ? this.props.auto : true}
-      callback={res => this.props.actions.login(res) && this.onLogin(res)}
+      callback={(res) => this.props.actions.login(res) && this.onLogin(res)}
     />
   }
 }

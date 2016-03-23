@@ -1,0 +1,19 @@
+machine:
+  environment:
+    AWS_REGION: us-east-1
+  node:
+    version: 4.2.2
+  services:
+    - mongodb
+
+dependencies:
+  pre:
+    - curl -sL https://github.com/apex/apex/releases/download/v0.6.1/apex_linux_amd64 -o ~/apex
+    - chmod +x ~/apex
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - ~/apex deploy
+      - ./script/deploy.sh

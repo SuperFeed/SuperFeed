@@ -3,3 +3,4 @@ target/
 _server/
 _client/
 *.log
+app.zip
