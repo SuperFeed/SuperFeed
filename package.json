@@ -26,7 +26,7 @@
     "dev": "parallelshell \"npm run dev-client\" \"npm run dev-server\" \"npm run dev-api\"",
     "prebuild": "rimraf target && mkdirp target",
     "build": "npm run build-server && npm run build-client",
-    "postbuild": "cp package.json target && cp -r resources/. target && cp -r static target"
+    "postbuild": "cp package.json target && cp -r resources/. target"
   },
   "devDependencies": {
     "apex.js": "^1.1.0",
