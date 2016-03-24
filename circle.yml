@@ -3,7 +3,7 @@ machine:
     AWS_REGION: us-east-1
     AWS_DEFAULT_REGION: us-east-1
   node:
-    version: 4.2.2
+    version: stable
   services:
     - mongodb
 
