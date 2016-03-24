@@ -40,15 +40,15 @@ soular('*')
   return '<!doctype html>' + renderToStaticMarkup(
     <html>
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
         <script dangerouslySetInnerHTML={{ __html: 'window.__REDUX_INIT = ' + initialState }}></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
-        <link rel="stylesheet" href="//oss.maxcdn.com/semantic-ui/2.1.8/semantic.min.css" />
+        <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css' />
+        <link rel='stylesheet' href='//oss.maxcdn.com/semantic-ui/2.1.8/semantic.min.css' />
       </head>
       <body>
-        <div id="root" dangerouslySetInnerHTML={{ __html: app }}></div>
-        <script src="app.js"></script>
+        <div id='root' dangerouslySetInnerHTML={{ __html: app }}></div>
+        <script src='app.js'></script>
       </body>
     </html>
   )
