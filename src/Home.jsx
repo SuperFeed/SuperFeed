@@ -41,22 +41,22 @@ export default function Home () {
                 <i className='circular home icon'></i>
                 Community
               </h2>
-              <p>Connect with your community with SuperFeed!</p>
+              <p>Connect with your community with SuperFeed! SuperFeed gived people around you information about local events, parties, and other fun things.</p>
             </div>
             <div className='column'>
               <h2 className='ui center aligned icon header'>
                 <i className='circular users icon'></i>
                 Friends
               </h2>
-              <p>See what's up with your friends!</p>
+              <p>See what's up with your friends! SuperFeed lets you find where you want to go tonight, tomorrow, and every day to come. Connect with friends by joining them!</p>
             </div>
           </div>
         </div>
       </div>
 
-      <div className='ui vertical stripe center aligned segment'>
+      <div className='ui vertical stripe center aligned padded segment'>
         <h2>SuperFeed</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>SuperFeed is a social network that lets users share hyperlocal information. SuperFeed also pulls in data from other apps to broaden the scope of what you can normally see. Create events, share images, and let people know what's going on, right here, with SuperFeed.</p>
       </div>
     </div>
 
