@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { SF_API } from './api'
 import re, { selector } from './actions'
+import Post from './components/Post'
 
 @connect(selector, re.action)
 export default class App extends Component {
@@ -20,14 +21,18 @@ export default class App extends Component {
       SF_API.get('getPosts')
     ])
 
-    this.setState({ version, posts })
+    this.setState({ version, posts: posts.posts })
   }
 
   render () {
+    const posts = this.state.posts
+      ? this.state.posts.map((p) => <Post key={p.author} {...p}/>)
+      : null
+
     return <div className='ui container'>
       <p>Auth: {JSON.stringify(this.props.auth)}</p>
       <p>Version: {JSON.stringify(this.state.version)}</p>
-      <p>Posts: {JSON.stringify(this.state.posts)}</p>
+      {posts}
     </div>
   }
 }
