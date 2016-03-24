@@ -3,7 +3,7 @@ import Login from './Login'
 
 const styles = {
   masthead: {
-    backgroundImage: 'url(http://www.nealjs.com/img/hero-bg-01.jpg)',
+    backgroundImage: 'url(/hero-bg-01.jpg)',
     backgroundSize: 'cover',
     height: '98vh',
     marginBottom: '3rem'

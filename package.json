@@ -19,7 +19,7 @@
     "dev-api": "cross-env BABEL_ENV=lambda nodemon --watch functions run-api.js",
     "dev-client": "webpack-dev-server --history-api-fallback --hot --inline --progress --colors --port 3000",
     "build-client": "cross-env NODE_ENV=production webpack",
-    "predev-server": "cross-env BABEL_ENV=server babel src -d _server && cp -r static _server",
+    "predev-server": "cross-env BABEL_ENV=server babel src -d _server",
     "dev-server": "cross-env BABEL_ENV=server parallelshell \"babel --watch src -d _server\" \"nodemon --watch _server _server/server.js\"",
     "build-server": "BABEL_ENV=server babel src -d target",
     "predev": "rimraf _client _server",
@@ -78,6 +78,6 @@
     "redux-promise": "^0.5.1",
     "redux-reaction": "0.0.1",
     "reselect": "^2.2.1",
-    "soular": "^0.3.6"
+    "soular": "^0.3.7"
   }
 }
