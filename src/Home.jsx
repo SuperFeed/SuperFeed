@@ -19,7 +19,7 @@ export default function Home () {
     <div className='ui inverted vertical masthead center aligned segment' style={styles.masthead}>
       <div className='ui text container' style={styles.banner}>
         <h1 className='ui inverted header' style={styles.h1}>SuperFeed</h1>
-        <h2 style={styles.h2}>Community-focued hyperlocal social event feed</h2>
+        <h2 style={styles.h2}>Community-focued hyperlocal social media feed</h2>
         <br />
         <Login auto={false} />
       </div>
