@@ -6,7 +6,7 @@ import serveStatic from 'soular/static'
 import router from 'soular/react-router'
 
 import React from 'react'
-import { renderToString } from 'react-dom/server'
+import { renderToString, renderToStaticMarkup } from 'react-dom/server'
 
 import routes from './routes'
 import Container, { configureStore } from './Container'
@@ -37,22 +37,21 @@ soular('*')
     </Container>
   )
 
-  return `
-    <!doctype html>
+  return '<!doctype html>' + renderToStaticMarkup(
     <html>
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script>window.__REDUX_INIT = ${initialState}</script>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script dangerouslySetInnerHTML={{ __html: 'window.__REDUX_INIT = ' + initialState }}></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="//oss.maxcdn.com/semantic-ui/2.1.8/semantic.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="//oss.maxcdn.com/semantic-ui/2.1.8/semantic.min.css" />
       </head>
       <body>
-        <div id="root">${app}</div>
+        <div id="root" dangerouslySetInnerHTML={{ __html: app }}></div>
         <script src="app.js"></script>
       </body>
     </html>
-  `
+  )
 }))
 
 .use(serveStatic('', DEBUG ? 'resources/static' : 'static'))
