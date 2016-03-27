@@ -37,8 +37,8 @@ soular('*')
       {content}
     </Container>
   )
-  
-  const head = Helmet.rewind();
+
+  const head = Helmet.rewind()
 
   return '<!doctype html>' + renderToStaticMarkup(
     <html>
