@@ -29,7 +29,7 @@ soular('*')
 
 .use(router(routes, (content) => {
   const appScript = process.env.NODE_ENV === 'production'
-    ? require('./stats').main
+    ? '//static.superfeed.xyz/' + require('./stats').main
     : 'app.js'
 
   const store = configureStore()
