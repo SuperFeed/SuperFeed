@@ -28,6 +28,11 @@ soular('*')
 })
 
 .use(router(routes, (content) => {
+  const appScript = process.env.NODE_ENV === 'production'
+    ? require('./stats').main
+    : 'app.js'
+
+
   const store = configureStore()
   const initialState = JSON.stringify(store.getState())
 
@@ -48,7 +53,7 @@ soular('*')
       </head>
       <body>
         <div id='root' dangerouslySetInnerHTML={{ __html: app }}></div>
-        <script src='app.js'></script>
+        <script src={appScript}></script>
       </body>
     </html>
   )

@@ -16,12 +16,12 @@ export default class App extends Component {
   }
 
   async componentDidMount () {
-    let [version, posts] = await Promise.all([
-      SF_API.get('version'),
-      SF_API.get('getPosts')
-    ])
+    SF_API.get('version', ({ version }) => this.setState({ version }))
+    SF_API.get('getPosts', ({ posts }) => this.setState({ posts }))
+  }
 
-    this.setState({ version, posts: posts.posts })
+  componentWillUnmount () {
+    SF_API.disconnect()
   }
 
   render () {

@@ -12,7 +12,7 @@ const config = {
   ],
   output: {
     path: DEBUG ? '_client' : 'target/static',
-    filename: 'app.js'
+    filename: DEBUG ? 'app.js' : 'app-[hash].js'
   },
   devtool: DEBUG ? '#eval-source-map' : '',
   module: {
@@ -44,6 +44,15 @@ const config = {
 }
 
 if (!DEBUG) {
+  config.plugins.push(function () {
+    this.plugin('done', function(stats) {
+      require('fs').writeFileSync(
+        path.join(__dirname, 'target', 'stats.json'),
+        JSON.stringify(stats.toJson().assetsByChunkName)
+      )
+    })
+  })
+
   config.plugins.push(new webpack.optimize.UglifyJsPlugin({
     sourceMap: false,
     mangle: false
