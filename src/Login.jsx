@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import FacebookLogin from 'react-facebook-login'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
-import Helmet from 'react-helmet'
 import re, { selector } from './actions'
 
 const APP_ID = process.env.NODE_ENV === 'production'
