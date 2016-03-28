@@ -32,7 +32,6 @@ soular('*')
     ? require('./stats').main
     : 'app.js'
 
-
   const store = configureStore()
   const initialState = JSON.stringify(store.getState())
 

@@ -45,7 +45,7 @@ const config = {
 
 if (!DEBUG) {
   config.plugins.push(function () {
-    this.plugin('done', function(stats) {
+    this.plugin('done', function (stats) {
       require('fs').writeFileSync(
         path.join(__dirname, 'target', 'stats.json'),
         JSON.stringify(stats.toJson().assetsByChunkName)
