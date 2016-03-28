@@ -5,6 +5,7 @@ import { createDevTools } from 'redux-devtools'
 import LogMonitor from 'redux-devtools-log-monitor'
 import DockMonitor from 'redux-devtools-dock-monitor'
 import promiseMiddleware from 'redux-promise'
+import Helmet from 'react-helmet'
 import re from './actions'
 
 const Devtools = createDevTools(
@@ -37,6 +38,7 @@ export default class Container extends Component {
     return <Provider store={this.props.store}>
       <div>
         {process.env.NODE_ENV !== 'production' ? <Devtools /> : null}
+        <Helmet titleTemplate='SuperFeed - %s' defaultTitle='SuperFeed' />
         {this.props.children}
       </div>
     </Provider>

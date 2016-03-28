@@ -7,6 +7,7 @@ import router from 'soular/react-router'
 
 import React from 'react'
 import { renderToString, renderToStaticMarkup } from 'react-dom/server'
+import Helmet from 'react-helmet'
 
 import routes from './routes'
 import Container, { configureStore } from './Container'
@@ -43,6 +44,8 @@ soular('*')
     </Container>
   )
 
+  const head = Helmet.rewind()
+
   return '<!doctype html>' + renderToStaticMarkup(
     <html>
       <head>
@@ -51,6 +54,7 @@ soular('*')
         <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
         <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css' />
         <link rel='stylesheet' href='//oss.maxcdn.com/semantic-ui/2.1.8/semantic.min.css' />
+        {head.title.toComponent()}
       </head>
       <body>
         <div id='root' dangerouslySetInnerHTML={{ __html: app }}></div>
