@@ -7,6 +7,7 @@ import router from 'soular/react-router'
 
 import React from 'react'
 import { renderToString, renderToStaticMarkup } from 'react-dom/server'
+import Helmet from 'react-helmet'
 
 import routes from './routes'
 import Container, { configureStore } from './Container'
@@ -28,6 +29,9 @@ soular('*')
 })
 
 .use(router(routes, (content) => {
+  const head = Helmet.rewind()
+  const attrs = head.htmlAttributes.toComponent()
+
   const appScript = process.env.NODE_ENV === 'production'
     ? process.env.STATIC === 'local'
       ? require('./stats').main
@@ -44,13 +48,13 @@ soular('*')
   )
 
   return '<!doctype html>' + renderToStaticMarkup(
-    <html>
+    <html {...attrs}>
       <head>
-        <meta name='viewport' content='width=device-width, initial-scale=1' />
+        {head.title.toComponent()}
+        {head.meta.toComponent()}
+        {head.link.toComponent()}
+        {head.script.toComponent()}
         <script dangerouslySetInnerHTML={{ __html: 'window.__REDUX_INIT = ' + initialState }}></script>
-        <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
-        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css' />
-        <link rel='stylesheet' href='//oss.maxcdn.com/semantic-ui/2.1.8/semantic.min.css' />
       </head>
       <body>
         <div id='root' dangerouslySetInnerHTML={{ __html: app }}></div>

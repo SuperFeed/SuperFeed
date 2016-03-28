@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import FacebookLogin from 'react-facebook-login'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
+import Helmet from 'react-helmet'
 import re, { selector } from './actions'
 
 const APP_ID = process.env.NODE_ENV === 'production'
@@ -15,10 +16,13 @@ export default class Login extends Component {
   }
 
   render () {
-    return <FacebookLogin
-      appId={APP_ID}
-      autoLoad={this.props.auto !== undefined ? this.props.auto : true}
-      callback={(res) => this.props.actions.login(res) && this.onLogin(res)}
-    />
+    return <div>
+      <Helmet title='Login' />
+      <FacebookLogin
+        appId={APP_ID}
+        autoLoad={this.props.auto !== undefined ? this.props.auto : true}
+        callback={(res) => this.props.actions.login(res) && this.onLogin(res)}
+      />
+    </div>
   }
 }
