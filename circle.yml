@@ -16,5 +16,5 @@ deployment:
   production:
     branch: master
     commands:
-      - ~/apex deploy
+      - ~/apex deploy -e COUCH_USERNAME=$COUCH_USERNAME -e COUCH_PASSWORD=$COUCH_PASSWORD
       - sh script/deploy.sh

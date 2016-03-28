@@ -8,8 +8,13 @@ let cors = require('soular/cors')
 let reqq = require('reqq')
 
 fs.readdirSync('functions')
-  .map((func) => require('./functions/' + func))
-  .reduce((_app, func) => _app.use(route[func.method](func.path)((e) => ({ body: func.handler(e) }))), soular('*'))
+  .map((func) => func !== 'db.js' ? require('./functions/' + func) : null)
+  .reduce((_app, func) => !func
+    ? _app
+    : _app.use(route[func.method](func.path)((e) =>
+      Promise.resolve(func.handler(e)).then((res) => ({ body: res }))
+    )), soular('*')
+  )
   .use(cors)
   .listen(3005)
   .on('listening', () => {

@@ -16,13 +16,10 @@ export default class Login extends Component {
   }
 
   render () {
-    return <div>
-      <Helmet title='Login' />
-      <FacebookLogin
-        appId={APP_ID}
-        autoLoad={this.props.auto !== undefined ? this.props.auto : true}
-        callback={(res) => this.props.actions.login(res) && this.onLogin(res)}
-      />
-    </div>
+    return <FacebookLogin
+      appId={APP_ID}
+      autoLoad={this.props.auto !== undefined ? this.props.auto : true}
+      callback={(res) => this.props.actions.login(res) && this.onLogin(res)}
+    />
   }
 }
