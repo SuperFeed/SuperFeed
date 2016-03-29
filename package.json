@@ -65,6 +65,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.5.0",
+    "babel-runtime": "^6.6.1",
     "isomorphic-fetch": "^2.2.1",
     "neal-react": "^0.2.5",
     "pouchdb": "^5.3.1",
