@@ -1,13 +1,12 @@
 import λ from 'apex.js'
 import PouchDB from 'pouchdb'
-import connect from '../db'
+import connect from '../../db'
 
 export const method = 'GET'
 export const path = '/superfeed_version'
 
-export const handler = async function () {
+export const handler = async (e) => {
   let db = new PouchDB(connect('meta'))
-
   let version = await db.get('version')
 
   return version

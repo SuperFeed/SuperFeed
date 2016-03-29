@@ -16,5 +16,5 @@ deployment:
   production:
     branch: master
     commands:
-      - ~/apex deploy -e COUCH_USERNAME=$COUCH_USERNAME -e COUCH_PASSWORD=$COUCH_PASSWORD
+      - BABEL_ENV=lambda ~/apex deploy -e COUCH_USERNAME=$COUCH_USERNAME -e COUCH_PASSWORD=$COUCH_PASSWORD -e NODE_ENV=production
       - sh script/deploy.sh
