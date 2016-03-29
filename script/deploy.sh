@@ -6,7 +6,6 @@ CF_PATH="s3://00-superfeed-static"
 
 npm run build
 cd target
-npm install --production
 
 zip -r app.zip * .ebextensions/*
 aws s3 cp app.zip $S3_PATH
