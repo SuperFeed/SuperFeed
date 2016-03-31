@@ -4,6 +4,8 @@ import 'isomorphic-fetch'
 import soular from 'soular'
 import serveStatic from 'soular/static'
 import router from 'soular/react-router'
+import ping from 'soular/ping'
+import cors from 'soular/cors'
 
 import React from 'react'
 import { renderToString, renderToStaticMarkup } from 'react-dom/server'
@@ -16,6 +18,8 @@ const DEBUG = process.env.NODE_ENV !== 'production'
 const APP_PORT = DEBUG ? 3001 : process.env.PORT || 8080
 
 soular('*')
+.use(cors)
+.use(ping)
 
 .use((ctx) => {
   if (ctx.req.headers['x-forwarded-proto'] === 'http') {
