@@ -1,0 +1,20 @@
+{
+  "servers": [
+    {
+      "name": "WebServer",
+      "type": "ping",
+      "host": "https://superfeed.xyz"
+    },
+    {
+      "name": "CDN",
+      "type": "server",
+      "host": "https://static.superfeed.xyz",
+      "url": "/status.json"
+    },
+    {
+      "name": "CouchDB",
+      "type": "couchdb",
+      "host": "https://db.superfeed.xyz"
+    }
+  ]
+}
