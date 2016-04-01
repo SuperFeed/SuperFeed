@@ -3,18 +3,21 @@
     {
       "name": "WebServer",
       "type": "ping",
-      "host": "https://superfeed.xyz"
+      "host": "https://superfeed.xyz",
+      "tags": ["web"]
     },
     {
       "name": "CDN",
       "type": "server",
       "host": "https://static.superfeed.xyz",
-      "url": "/status.json"
+      "url": "/status.json",
+      "tags": ["static", "web"]
     },
     {
       "name": "CouchDB",
       "type": "couchdb",
-      "host": "https://db.superfeed.xyz"
+      "host": "https://db.superfeed.xyz",
+      "tags": ["db"]
     }
   ]
 }
