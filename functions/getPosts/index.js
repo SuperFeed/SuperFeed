@@ -1,12 +1,12 @@
 import λ from 'apex.js'
 import r from 'rethinkdb'
-import db from '../../db'
+import { DB } from '../../constants'
 
 export const method = 'GET'
 export const path = '/superfeed_getPosts'
 
 export const handler = async function (e) {
-  let conn = await r.connect(db)
+  let conn = await r.connect(DB)
   let cursor = await r.table('posts').run(conn)
   let results = await cursor.toArray()
 

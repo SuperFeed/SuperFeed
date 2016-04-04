@@ -1,15 +1,22 @@
+import 'isomorphic-fetch'
 import λ from 'apex.js'
 import r from 'rethinkdb'
-import db from '../../db'
+import { DB } from '../../constants'
 
 export const method = 'POST'
 export const path = '/superfeed_createPost'
 
-export const handler = async function ({ author, body }) {
-  let conn = await r.connect(db)
+export const handler = async function ({ author, accessToken, body }) {
+  let { name, id } = await fetch(`https://graph.facebook.com/me?access_token=${accessToken}`).then(res => res.json())
+
+  if (id !== author) {
+    throw new Error('Author does not match access token!')
+  }
+
+  let conn = await r.connect(DB)
 
   let res = await r.table('posts').insert({
-    author,
+    name,
     body
   }).run(conn)
 

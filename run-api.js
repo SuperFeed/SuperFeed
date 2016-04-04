@@ -13,9 +13,8 @@ fs.readdirSync('functions')
     ? _app
     : _app.use(route[func.method](func.path)((e) =>
       e.state.get('body').then(func.handler).then((res) => ({ body: res }))
-    )), soular('*')
+    )), soular('*').use(cors)
   )
-  .use(cors)
   .listen(3005)
   .on('listening', () => {
     console.log('API listening at 3005!')
