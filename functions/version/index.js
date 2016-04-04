@@ -1,15 +1,15 @@
 import λ from 'apex.js'
-import PouchDB from 'pouchdb'
-import connect from '../../db'
+import r from 'rethinkdb'
+import db from '../../db'
 
 export const method = 'GET'
 export const path = '/superfeed_version'
 
-export const handler = async function (e) {
-  let db = new PouchDB(connect('meta'))
-  let version = await db.get('version')
+export const handler = async function () {
+  let conn = await r.connect(db)
+  let { number } = await r.table('meta').get('version').run(conn)
 
-  return version
+  return { version: number }
 }
 
 export default λ(handler)

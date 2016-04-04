@@ -4,3 +4,4 @@ _server/
 _client/
 *.log
 app.zip
+_db/

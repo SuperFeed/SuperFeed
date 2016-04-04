@@ -12,7 +12,7 @@ fs.readdirSync('functions')
   .reduce((_app, func) => !func
     ? _app
     : _app.use(route[func.method](func.path)((e) =>
-      Promise.resolve(func.handler(e)).then((res) => ({ body: res }))
+      e.state.get('body').then(func.handler).then((res) => ({ body: res }))
     )), soular('*')
   )
   .use(cors)

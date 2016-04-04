@@ -4,8 +4,6 @@ machine:
     AWS_DEFAULT_REGION: us-east-1
   node:
     version: stable
-  services:
-    - mongodb
 
 dependencies:
   pre:
@@ -16,5 +14,5 @@ deployment:
   production:
     branch: master
     commands:
-      - BABEL_ENV=lambda ~/apex deploy -e COUCH_USERNAME=$COUCH_USERNAME -e COUCH_PASSWORD=$COUCH_PASSWORD -e NODE_ENV=production
+      - BABEL_ENV=lambda ~/apex deploy -e RDB_AUTH_KEY=$RDB_AUTH_KEY -e NODE_ENV=production
       - sh script/deploy.sh
