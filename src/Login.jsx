@@ -3,7 +3,7 @@ import FacebookLogin from 'react-facebook-login'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import re, { selector } from './actions'
-import { APP_ID } from '../constants'
+import { APP_ID } from './api'
 
 @connect(selector, re.action)
 export default class Login extends Component {

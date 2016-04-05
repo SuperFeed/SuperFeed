@@ -1,6 +1,6 @@
 import λ from 'apex.js'
 import r from 'rethinkdb'
-import { DB } from '../../constants'
+import { DB } from '../../db'
 
 export const method = 'GET'
 export const path = '/superfeed_getPosts'

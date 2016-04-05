@@ -5,3 +5,4 @@ _client/
 *.log
 app.zip
 _db/
+_static
