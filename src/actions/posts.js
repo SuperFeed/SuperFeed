@@ -1,5 +1,4 @@
 import { Reaction, groupActions } from 'redux-reaction'
-import { HAR } from 'reqq'
 import { SF_API } from '../api'
 
 const initialState = {

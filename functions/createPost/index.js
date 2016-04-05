@@ -7,7 +7,7 @@ export const method = 'POST'
 export const path = '/superfeed_createPost'
 
 export const handler = async function ({ author, accessToken, body }) {
-  let { name, id } = await fetch(`https://graph.facebook.com/me?access_token=${accessToken}`).then(res => res.json())
+  let { name, id } = await fetch(`https://graph.facebook.com/me?access_token=${accessToken}`).then((res) => res.json())
 
   if (id !== author) {
     throw new Error('Author does not match access token!')

@@ -5,7 +5,6 @@ import { createDevTools } from 'redux-devtools'
 import LogMonitor from 'redux-devtools-log-monitor'
 import DockMonitor from 'redux-devtools-dock-monitor'
 import promiseMiddleware from 'redux-promise'
-import thunkMiddleware from 'redux-thunk'
 import re from './actions'
 
 const Devtools = createDevTools(

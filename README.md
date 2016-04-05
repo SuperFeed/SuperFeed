@@ -29,7 +29,8 @@ build starts at port 3000. The node server is proxied with webpack-dev-server.
 The API is started with `run-api.js` and mirrors the AWS lambda functions. The
 API server listens at port 3005.
 
-You also need to run RethinkDB in another shell, or somewhere.
+You also need to run RethinkDB in another shell, or somewhere. Run this with
+`rethinkdb -d _db`
 
 ## Tech Stack
 * React
