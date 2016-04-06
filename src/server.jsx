@@ -45,7 +45,7 @@ soular('*')
       : '//static.superfeed.xyz/' + require('./stats').main
     : 'app.js'
 
-  match({ routes, location: ctx.req.url }, (error, redirectLocation, renderProps) => {
+  match({ history, routes, location: ctx.req.url }, (error, redirectLocation, renderProps) => {
     if (error) {
       reject(error)
     } else if (redirectLocation) {

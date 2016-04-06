@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import { createDevTools } from 'redux-devtools'
 import LogMonitor from 'redux-devtools-log-monitor'
