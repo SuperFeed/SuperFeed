@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Helmet from 'react-helmet'
 import Login from './Login'
 
 const styles = {
@@ -18,7 +17,6 @@ const styles = {
 export default class Home extends Component {
   render () {
     return <div>
-      <Helmet title='Home' />
       <div className='ui inverted vertical masthead center aligned segment' style={styles.masthead}>
         <div className='ui text container' style={styles.banner}>
           <h1 className='ui inverted header' style={styles.h1}>SuperFeed</h1>

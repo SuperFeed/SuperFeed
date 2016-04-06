@@ -74,6 +74,7 @@
     "react-helmet": "^3.0.0",
     "react-redux": "^4.4.0",
     "react-router": "^2.0.1",
+    "react-router-redux": "^4.0.1",
     "redux": "^3.3.1",
     "redux-actions": "^0.9.1",
     "redux-devtools": "^3.1.1",
@@ -81,6 +82,7 @@
     "redux-devtools-log-monitor": "^1.0.4",
     "redux-promise": "^0.5.1",
     "redux-reaction": "0.0.1",
+    "redux-slider-monitor": "^1.0.3",
     "reqq": "^0.2.1",
     "reselect": "^2.2.1",
     "soular": "^0.3.7"

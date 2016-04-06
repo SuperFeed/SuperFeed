@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
-import { createStore, applyMiddleware, compose } from 'redux'
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import { createDevTools } from 'redux-devtools'
 import LogMonitor from 'redux-devtools-log-monitor'
 import DockMonitor from 'redux-devtools-dock-monitor'
+import SliderMonitor from 'redux-slider-monitor'
 import promiseMiddleware from 'redux-promise'
 import re from './actions'
 
 const Devtools = createDevTools(
   <DockMonitor fluid defaultSize={0.3} toggleVisibilityKey='ctrl-h' changePositionKey='ctrl-q' changeMonitorKey='ctrl-m'>
     <LogMonitor theme='tomorrow' />
+    <SliderMonitor keyboardEnabled />
   </DockMonitor>
 )
 

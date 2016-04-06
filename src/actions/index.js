@@ -1,7 +1,8 @@
 import { packageActions } from 'redux-reaction'
+import { routerReducer } from 'react-router-redux'
 import auth from './auth'
-import posts from './posts'
+import app from './app'
 
-export default packageActions({ auth, posts })
+export default packageActions({ routing: { reducer: routerReducer }, auth, app })
 
 export const selector = (state) => state
