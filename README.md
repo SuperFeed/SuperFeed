@@ -23,6 +23,20 @@ npm install
 Make sure RethinkDB is installed. If you're using OS X, you can install it with `brew install rethinkdb`.
 For a specific platform checkout https://www.rethinkdb.com/docs/install/.
 
+## Setting up the database
+
+Create the database and tables with
+
+```
+npm run create-db
+```
+
+If needed, the database can be dropped with
+
+```
+npm run drop-db
+```
+
 ## Running the app
 
 ```
