@@ -8,7 +8,7 @@ module.exports.createDatabase = function () {
   var r = require('rethinkdb')
   var conn
 
-  r.connect()
+  r.connect({})
     .then((c) => { conn = c })
     .then(() => r.dbCreate('sf').run(conn))
     .catch(() => console.log('DB `sf` already exists!'))
@@ -20,9 +20,9 @@ module.exports.createDatabase = function () {
       id: 'version',
       number: 1
     }).run(conn))
-    .catch(() => console.log('Document `version` already exists!'))
+    // .catch(() => console.log('Document `version` already exists!'))
     .then(() => console.log('Done creating DB!'))
-    .catch((e) => console.log(e))
+    .catch((e) => console.log(e.stack))
     .then(() => process.exit(0))
 }
 
@@ -30,7 +30,7 @@ module.exports.dropDatabase = function () {
   var r = require('rethinkdb')
   var conn
 
-  r.connect()
+  r.connect({})
     .then((c) => { conn = c })
     .then(() => r.dbDrop('sf').run(conn))
     .catch(() => console.log('No DB `sf`!'))
