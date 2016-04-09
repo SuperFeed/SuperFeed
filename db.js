@@ -9,7 +9,7 @@ module.exports.createDatabase = function () {
   var conn
 
   r.connect()
-    .then(c => conn = c)
+    .then((c) => { conn = c })
     .then(() => r.dbCreate('sf').run(conn))
     .catch(() => console.log('DB `sf` already exists!'))
     .then(() => r.db('sf').tableCreate('meta').run(conn))
@@ -17,12 +17,12 @@ module.exports.createDatabase = function () {
     .then(() => r.db('sf').tableCreate('posts').run(conn))
     .catch(() => console.log('Table `posts` already exists!'))
     .then(() => r.db('sf').table('meta').insert({
-        id: 'version',
-        number: 1
-      }).run(conn))
+      id: 'version',
+      number: 1
+    }).run(conn))
     .catch(() => console.log('Document `version` already exists!'))
     .then(() => console.log('Done creating DB!'))
-    .catch(e => console.log(e))
+    .catch((e) => console.log(e))
     .then(() => process.exit(0))
 }
 
@@ -31,10 +31,10 @@ module.exports.dropDatabase = function () {
   var conn
 
   r.connect()
-    .then(c => conn = c)
+    .then((c) => { conn = c })
     .then(() => r.dbDrop('sf').run(conn))
     .catch(() => console.log('No DB `sf`!'))
     .then(() => console.log('Done dropping DB!'))
-    .catch(e => console.log(e))
+    .catch((e) => console.log(e))
     .then(() => process.exit(0))
 }
