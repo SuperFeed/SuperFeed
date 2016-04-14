@@ -2,7 +2,7 @@
   "name": "superfeed",
   "description": "SuperFeed API",
   "role": "arn:aws:iam::252420778140:role/lambda",
-  "runtime": "nodejs",
+  "runtime": "nodejs4.3",
   "handler": "main.default",
   "hooks": {
     "build": "../../node_modules/.bin/browserify --node -s default -t babelify -o main.js index.js",
