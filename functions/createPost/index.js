@@ -1,3 +1,16 @@
+/**
+ * @api {post} /superfeed_createPost Create Post
+ * @apiGroup Posts
+ * @apiDescription Creates a either a text or image post
+ *
+ * @apiParam {String} author Author's FB id
+ * @apiParam {String} accessToken Author's FB access token
+ * @apiParam {String} body The post's text body
+ * @apiParam {String} img The base64 encoded image
+ *
+ * @apiSuccess {String} id Generated post id
+ */
+
 import 'isomorphic-fetch'
 import λ from 'apex.js'
 import r from 'rethinkdb'

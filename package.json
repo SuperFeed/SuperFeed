@@ -1,5 +1,5 @@
 {
-  "name": "Front",
+  "name": "SuperFeed",
   "version": "0.0.0",
   "author": "Ryan Delaney <rrdelaney@outlook.com>",
   "repository": "https://github.com/SuperFeed/Front",
@@ -13,6 +13,10 @@
       "fetch",
       "FormData"
     ]
+  },
+  "apidoc": {
+    "title": "SFAPI docs",
+    "sampleUrl" : "https://reoz4sq35d.execute-api.us-east-1.amazonaws.com/prod"
   },
   "scripts": {
     "test": "standard | snazzy",
@@ -33,6 +37,7 @@
   },
   "devDependencies": {
     "apex.js": "^1.1.0",
+    "apidoc": "^0.15.1",
     "aws-sdk": "^2.3.0",
     "babel-cli": "^6.6.5",
     "babel-core": "^6.5.2",

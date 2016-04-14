@@ -1,3 +1,13 @@
+/**
+ * @api {post} /superfeed_getPosts Get Posts
+ * @apiGroup Posts
+ * @apiDescription Gets all posts from a location
+ *
+ * @apiParam {Number[]} location The coordinates of where the user is located
+ *
+ * @apiSuccess {Post[]} posts Array of posts from the requested location
+ */
+
 import λ from 'apex.js'
 import r from 'rethinkdb'
 import { DB } from '../../db'
