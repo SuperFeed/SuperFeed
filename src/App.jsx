@@ -19,7 +19,8 @@ export default class App extends Component {
     await SF_API.post('createPost', {
       author: this.props.auth.id,
       accessToken: this.props.auth.accessToken,
-      body: this.state.createPostText
+      body: this.state.createPostText,
+      img: this.state.createPostImage
     })
 
     this.props.actions.getPosts()
@@ -40,6 +41,7 @@ export default class App extends Component {
         <div className='ui container'>
           <input value={this.state.createPostText} onChange={::this.handleChange('createPostText')} />
           <button className='ui button' onClick={::this.createPost}>Create Post!</button>
+          <button className='ui button'>Upload Image</button>
           {posts}
           <p>Auth: {JSON.stringify(this.props.auth)}</p>
         </div>
