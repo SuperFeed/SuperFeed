@@ -15,5 +15,5 @@ deployment:
     branch: master
     commands:
       - sh script/docs.sh
-      - BABEL_ENV=lambda ~/apex deploy -e RDB_AUTH_KEY=$RDB_AUTH_KEY -e NODE_ENV=production
+      - BABEL_ENV=lambda ~/apex deploy -s RDB_AUTH_KEY=$RDB_AUTH_KEY -s NODE_ENV=production
       - sh script/deploy.sh
