@@ -1,11 +1,34 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import re, { selector } from './actions'
+import { SF_API } from './api'
 import Nav, { Container } from './components/Nav'
 import Post from './components/Post'
 
 @connect(selector, re.action)
 export default class App extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      createPostText: ''
+    }
+  }
+
+  async createPost () {
+    await SF_API.post('createPost', {
+      author: this.props.auth.id,
+      accessToken: this.props.auth.accessToken,
+      body: this.state.createPostText
+    })
+
+    this.props.actions.getPosts()
+  }
+
+  handleChange (key) {
+    return (e) => this.setState({ [key]: e.target.value })
+  }
+
   render () {
     const posts = this.props.app.posts
       ? this.props.app.posts.map((p) => <Post key={p.id} {...p}/>)
@@ -15,9 +38,10 @@ export default class App extends Component {
       <Nav />
       <Container>
         <div className='ui container'>
+          <input value={this.state.createPostText} onChange={::this.handleChange('createPostText')} />
+          <button className='ui button' onClick={::this.createPost}>Create Post!</button>
           {posts}
           <p>Auth: {JSON.stringify(this.props.auth)}</p>
-          <p style={{ fontSize: '24px' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Location.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         </div>
       </Container>
     </div>

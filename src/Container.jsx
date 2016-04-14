@@ -5,12 +5,17 @@ import { createDevTools } from 'redux-devtools'
 import LogMonitor from 'redux-devtools-log-monitor'
 import DockMonitor from 'redux-devtools-dock-monitor'
 import SliderMonitor from 'redux-slider-monitor'
+import DispatcherMonitor from 'redux-devtools-dispatch'
+import MultipleMonitors from 'redux-devtools-multiple-monitors'
 import promiseMiddleware from 'redux-promise'
 import re from './actions'
 
 const Devtools = createDevTools(
   <DockMonitor fluid defaultSize={0.3} toggleVisibilityKey='ctrl-h' changePositionKey='ctrl-q' changeMonitorKey='ctrl-m'>
-    <LogMonitor theme='tomorrow' />
+    <MultipleMonitors>
+      <LogMonitor theme='tomorrow' />
+      <DispatcherMonitor actionCreators={re.creators} />
+    </MultipleMonitors>
     <SliderMonitor keyboardEnabled />
   </DockMonitor>
 )
