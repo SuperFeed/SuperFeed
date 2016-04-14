@@ -38,3 +38,32 @@ module.exports.dropDatabase = function () {
     .catch((e) => console.log(e))
     .then(() => process.exit(0))
 }
+
+module.exports.seedDatabase = function () {
+  var r = require('rethinkdb')
+  var conn
+
+  r.connect({ db: 'sf' })
+    .then((c) => { conn = c })
+    .then(() => r.table('meta').insert({ id: 'version', number: 1 }).run(conn))
+    .then(() => r.table('posts').insert([
+      {
+        author: '112958119101875',
+        body: 'This is a test post!',
+        imgPath: null
+      },
+      {
+        author: '112958119101875',
+        body: 'Wow! SF is so cool!',
+        imgPath: null
+      },
+      {
+        author: '134704483590586',
+        body: 'meh, sf is ok',
+        imgPath: null
+      }
+    ]).run(conn))
+    .then(() => console.log('Done seeding DB!'))
+    .catch((e) => console.log(e))
+    .then(() => process.exit(0))
+}

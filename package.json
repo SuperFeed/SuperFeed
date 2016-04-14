@@ -34,7 +34,8 @@
     "postbuild": "cp package.json target && cp -r resources/. target",
     "prod": "../node_modules/.bin/cross-env STATIC=local NODE_ENV=production PORT=3000 node server.js",
     "create-db": "node -e \"require('./db').createDatabase()\"",
-    "drop-db": "node -e \"require('./db').dropDatabase()\""
+    "drop-db": "node -e \"require('./db').dropDatabase()\"",
+    "seed-db": "node -e \"require('./db').seedDatabase()\""
   },
   "devDependencies": {
     "apex.js": "^1.1.0",
