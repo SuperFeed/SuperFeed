@@ -7,8 +7,8 @@ export const method = 'POST'
 export const path = '/superfeed_createPost'
 
 function storeLocalImg (fname, img) {
-  const imgPath = '_static/' + Math.random().toString().slice(2) + '_' + fname
-  require('fs').writeFileSync(fname, img)
+  const imgPath = '_static/' + Math.random().toString().slice(2)
+  require('fs').writeFileSync(imgPath, img)
 
   return Promise.resolve(imgPath)
 }
@@ -16,7 +16,7 @@ function storeLocalImg (fname, img) {
 function storeS3Img (fname, img) {
   const AWS = require('aws-sdk')
   const S3 = new AWS.S3()
-  const imgPath = Math.random().toString().slice(2) + '_' + fname
+  const imgPath = Math.random().toString().slice(2)
 
   return new Promise((resolve) => S3.putObject({
     Bucket: '00-superfeed-resources',
@@ -25,7 +25,7 @@ function storeS3Img (fname, img) {
   }, resolve))
 }
 
-export const handler = async function ({ author, accessToken, body, img, fname }) {
+export const handler = async function ({ author, accessToken, body, img }) {
   let { name, id } = await fetch(`https://graph.facebook.com/me?access_token=${accessToken}`).then((res) => res.json())
 
   if (id !== author) {
@@ -36,11 +36,12 @@ export const handler = async function ({ author, accessToken, body, img, fname }
     ? storeS3Img
     : storeLocalImg
 
-  let imgPath = await img ? storeImgFunc(fname, img) : Promise.resolve(null)
+  let imgPath = await (img ? storeImgFunc(fname, img) : Promise.resolve(null))
 
   let conn = await r.connect(DB)
 
   let res = await r.table('posts').insert({
+    author,
     name,
     body,
     imgPath
