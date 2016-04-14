@@ -1,3 +1,11 @@
+/**
+ * @api {get} /superfeed_version Version
+ * @apiGroup Info
+ * @apiDescription Returns the current API version
+ *
+ * @apiSuccess {String} version The current API version
+ */
+
 import λ from 'apex.js'
 import r from 'rethinkdb'
 import { DB } from '../../db'
