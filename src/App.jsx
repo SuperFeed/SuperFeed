@@ -16,7 +16,7 @@ export default class App extends Component {
   }
 
   async createPost () {
-    let res = await SF_API.post('createPost', {
+    await SF_API.post('createPost', {
       author: this.props.auth.id,
       accessToken: this.props.auth.accessToken,
       body: this.state.createPostText

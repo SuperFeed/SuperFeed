@@ -6,14 +6,14 @@ import { DB } from '../../db'
 export const method = 'POST'
 export const path = '/superfeed_createPost'
 
-function storeLocalImg (fname, img) {
+function storeLocalImg (img) {
   const imgPath = '_static/' + Math.random().toString().slice(2)
   require('fs').writeFileSync(imgPath, img)
 
   return Promise.resolve(imgPath)
 }
 
-function storeS3Img (fname, img) {
+function storeS3Img (img) {
   const AWS = require('aws-sdk')
   const S3 = new AWS.S3()
   const imgPath = Math.random().toString().slice(2)
@@ -36,7 +36,7 @@ export const handler = async function ({ author, accessToken, body, img }) {
     ? storeS3Img
     : storeLocalImg
 
-  let imgPath = await (img ? storeImgFunc(fname, img) : Promise.resolve(null))
+  let imgPath = await (img ? storeImgFunc(img) : Promise.resolve(null))
 
   let conn = await r.connect(DB)
 
