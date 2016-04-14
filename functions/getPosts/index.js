@@ -1,5 +1,5 @@
 /**
- * @api {post} /superfeed_getPosts Get Posts
+ * @api {get} /superfeed_getPosts Get Posts
  * @apiGroup Posts
  * @apiDescription Gets all posts from a location
  *
