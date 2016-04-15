@@ -50,17 +50,20 @@ module.exports.seedDatabase = function () {
       {
         author: '112958119101875',
         body: 'This is a test post!',
-        imgPath: null
+        imgPath: null,
+        likes: []
       },
       {
         author: '112958119101875',
         body: 'Wow! SF is so cool!',
-        imgPath: null
+        imgPath: null,
+        likes: []
       },
       {
         author: '134704483590586',
         body: 'meh, sf is ok',
-        imgPath: null
+        imgPath: null,
+        likes: []
       }
     ]).run(conn))
     .then(() => console.log('Done seeding DB!'))

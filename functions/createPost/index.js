@@ -56,7 +56,8 @@ export const handler = async function ({ author, accessToken, body, img }) {
   let res = await r.table('posts').insert({
     author,
     body,
-    imgPath
+    imgPath,
+    likes: []
   }).run(conn)
 
   return { id: res.generated_keys[0] }
