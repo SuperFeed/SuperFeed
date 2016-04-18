@@ -1,13 +1,24 @@
 import React from 'react'
 
-const Item = ({ active, children }) => <a className={`item ${active ? 'active' : ''}`}>{children}</a>
+const NUMS = ['zero', 'one', 'two', 'three', 'four']
 
-export default ({ onChange, location }) => <div className='ui secondary pointing three item menu' style={{ position: 'fixed' }}>
-  <Item active={location === 'login'}>Login</Item>
-  <Item active={location === 'app'}>App</Item>
-  <Item active={location === 'settings'}>Settings</Item>
-</div>
+export const NavItem = ({ children }) => <a className='item'>{children}</a>
 
-export const Container = ({ children }) => <div style={{ paddingTop: '3rem' }}>
+const navBarStyles = {
+  position: 'fixed',
+  bottom: '0px'
+}
+
+export const BottomNav = ({ onChange, location, children }) =>
+  <div className={`ui inverted secondary pointing blue ${NUMS[children.length]} item menu`} style={navBarStyles}>
+    {children}
+  </div>
+
+const navContainerStyles = {
+  paddingBottom: '4rem',
+  paddingTop: '1rem'
+}
+
+export const NavContainer = ({ children }) => <div style={navContainerStyles}>
   {children}
 </div>

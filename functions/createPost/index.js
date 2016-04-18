@@ -39,7 +39,7 @@ function storeS3Img (img) {
 }
 
 export const handler = async function ({ author, accessToken, body, img }) {
-  let { id } = await fetch(`https://graph.facebook.com/me?access_token=${accessToken}`).then((res) => res.json())
+  let { id, name } = await fetch(`https://graph.facebook.com/me?access_token=${accessToken}`).then((res) => res.json())
 
   if (id !== author) {
     throw new Error('Author does not match access token!')
@@ -55,6 +55,7 @@ export const handler = async function ({ author, accessToken, body, img }) {
 
   let res = await r.table('posts').insert({
     author,
+    name,
     body,
     imgPath,
     likes: []
