@@ -19,6 +19,19 @@ import Container, { configureStore } from './Container'
 const DEBUG = process.env.NODE_ENV !== 'production'
 const APP_PORT = DEBUG ? 3001 : process.env.PORT || 8080
 
+// This is a hack, should be replaced with a real stylesheet
+const GLOBAL_STYLES = `
+  html {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    height: 100%;
+    overflow: auto;
+  }
+`
+
 soular('*')
 .use(cors)
 .use(ping)
@@ -60,6 +73,7 @@ soular('*')
           <meta name='viewport' content='width=device-width, initial-scale=1' />
           <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css' />
           <link rel='stylesheet' href='https://oss.maxcdn.com/semantic-ui/2.1.8/semantic.min.css' />
+          <style dangerouslySetInnerHTML={{ __html: GLOBAL_STYLES }} />
           <script dangerouslySetInnerHTML={{ __html: 'window.__REDUX_INIT = ' + initialState }}></script>
           <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
         </head>

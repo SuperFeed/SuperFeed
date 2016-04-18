@@ -49,18 +49,21 @@ module.exports.seedDatabase = function () {
     .then(() => r.table('posts').insert([
       {
         author: '112958119101875',
+        name: 'Ruth Alaafcjfagcjc Bowerssky',
         body: 'This is a test post!',
         imgPath: null,
         likes: []
       },
       {
         author: '112958119101875',
+        name: 'Ruth Alaafcjfagcjc Bowerssky',
         body: 'Wow! SF is so cool!',
         imgPath: null,
         likes: []
       },
       {
         author: '134704483590586',
+        name: 'Linda Alaaecajeecgb Okelolason',
         body: 'meh, sf is ok',
         imgPath: null,
         likes: []
