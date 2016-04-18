@@ -36,8 +36,8 @@ export default class App extends Component {
         </div>
       </NavContainer>
       <BottomNav>
-        <NavItem><i className="large write icon" /></NavItem>
-        <NavItem><i className="large settings icon" /></NavItem>
+        <NavItem><i className='large write icon' /></NavItem>
+        <NavItem><i className='large settings icon' /></NavItem>
       </BottomNav>
     </div>
   }
