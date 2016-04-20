@@ -21,14 +21,13 @@
   "scripts": {
     "test": "standard | snazzy",
     "docs": "apidoc -i functions",
-    "dev-api": "cross-env BABEL_ENV=lambda nodemon --watch functions run-api.js",
     "dev-client": "webpack-dev-server --history-api-fallback --hot --inline --progress --colors --port 3000",
     "build-client": "cross-env NODE_ENV=production webpack",
     "predev-server": "cross-env BABEL_ENV=server babel src -d _server",
     "dev-server": "cross-env BABEL_ENV=server parallelshell \"babel --watch src -d _server\" \"nodemon --watch _server _server/server.js\"",
     "build-server": "BABEL_ENV=server babel src -d target",
     "predev": "rimraf _client _server && mkdirp _static",
-    "dev": "parallelshell \"npm run dev-client\" \"npm run dev-server\" \"npm run dev-api\"",
+    "dev": "parallelshell \"npm run dev-client\" \"npm run dev-server\"",
     "prebuild": "rimraf target && mkdirp target",
     "build": "npm run build-server && npm run build-client",
     "postbuild": "cp package.json target && cp -r resources/. target",
@@ -38,9 +37,7 @@
     "seed-db": "node -e \"require('./db').seedDatabase()\""
   },
   "devDependencies": {
-    "apex.js": "^1.1.0",
     "apidoc": "^0.15.1",
-    "aws-sdk": "^2.3.0",
     "babel-cli": "^6.6.5",
     "babel-core": "^6.5.2",
     "babel-eslint": "^6.0.2",
@@ -52,8 +49,6 @@
     "babel-preset-react-hmre": "^1.1.0",
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.7.2",
-    "babelify": "^7.2.0",
-    "browserify": "^13.0.0",
     "cross-env": "^1.0.7",
     "css-loader": "^0.23.1",
     "eslint": "^2.6.0",
@@ -80,7 +75,6 @@
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-facebook-login": "SuperFeed/react-facebook-login",
-    "react-helmet": "^3.0.0",
     "react-redux": "^4.4.0",
     "react-router": "^2.0.1",
     "react-router-redux": "^4.0.1",
@@ -95,7 +89,6 @@
     "redux-reaction": "^0.1.0",
     "redux-slider-monitor": "^1.0.3",
     "reqq": "^0.2.1",
-    "reselect": "^2.2.1",
     "soular": "^0.3.7"
   }
 }

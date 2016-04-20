@@ -8,12 +8,11 @@
  * @apiSuccess {Post[]} posts Array of posts from the requested location
  */
 
-import λ from 'apex.js'
 import r from 'rethinkdb'
 import { DB } from '../../db'
 
 export const method = 'GET'
-export const path = '/superfeed_getPosts'
+export const path = '/api/getPosts'
 
 export const handler = async function (e) {
   let conn = await r.connect(DB)
@@ -22,5 +21,3 @@ export const handler = async function (e) {
 
   return { posts: results }
 }
-
-export default λ(handler)

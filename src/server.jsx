@@ -7,6 +7,8 @@ import ping from 'soular/ping'
 import cors from 'soular/cors'
 import router from 'soular/react-router'
 
+import functions from './functions'
+
 import React from 'react'
 import { renderToString, renderToStaticMarkup } from 'react-dom/server'
 
@@ -32,21 +34,10 @@ const GLOBAL_STYLES = `
   }
 `
 
-soular('*')
+let app = soular('*')
 .use(cors)
 .use(ping)
-
-.use((ctx) => {
-  if (ctx.req.headers['x-forwarded-proto'] === 'http') {
-    return {
-      status: 302,
-      headers: { Location: 'https://' + ctx.req.headers.host + ctx.req.url },
-      body: '',
-      $force: true
-    }
-  }
-})
-
+.use(serveStatic('', DEBUG ? 'resources/static' : 'static'))
 .use((ctx) => {
   const store = configureStore()
   const initialState = JSON.stringify(store.getState())
@@ -86,7 +77,7 @@ soular('*')
   })(ctx)
 })
 
-.use(serveStatic('', DEBUG ? 'resources/static' : 'static'))
+.use(functions)
 
 .listen(APP_PORT)
 

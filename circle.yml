@@ -1,19 +1,10 @@
 machine:
-  environment:
-    AWS_REGION: us-east-1
-    AWS_DEFAULT_REGION: us-east-1
   node:
     version: stable
-
-dependencies:
-  pre:
-    - curl -sL https://github.com/apex/apex/releases/download/v0.8.0/apex_linux_amd64 -o ~/apex
-    - chmod +x ~/apex
 
 deployment:
   production:
     branch: master
     commands:
       - sh script/docs.sh
-      - BABEL_ENV=lambda ~/apex deploy -s RDB_AUTH_KEY=$RDB_AUTH_KEY -s NODE_ENV=production
       - sh script/deploy.sh

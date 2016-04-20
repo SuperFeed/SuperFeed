@@ -82,3 +82,4 @@ npm  run build
 * __NODE_ENV__ [_production_ | _development_]: Set to production for use on server.
 * __DB_ENV__ [_production_ | _local_]: Set to local to use the local RethinkDB
 * __PORT__ [_number?_]: Port number to serve off of
+* __STATIC__ [_production_ | _local_]: Set to local to serve local assets
