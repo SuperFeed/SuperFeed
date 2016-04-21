@@ -58,7 +58,8 @@ export const handler = async function ({ author, accessToken, body, img }) {
     name,
     body,
     imgPath,
-    likes: []
+    likes: [],
+    comments: []
   }).run(conn)
 
   return { id: res.generated_keys[0] }

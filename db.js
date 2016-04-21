@@ -52,21 +52,24 @@ module.exports.seedDatabase = function () {
         name: 'Ruth Alaafcjfagcjc Bowerssky',
         body: 'This is a test post!',
         imgPath: null,
-        likes: []
+        likes: [],
+        comments: []
       },
       {
         author: '112958119101875',
         name: 'Ruth Alaafcjfagcjc Bowerssky',
         body: 'Wow! SF is so cool!',
         imgPath: null,
-        likes: []
+        likes: [],
+        comments: []
       },
       {
         author: '134704483590586',
         name: 'Linda Alaaecajeecgb Okelolason',
         body: 'meh, sf is ok',
         imgPath: null,
-        likes: []
+        likes: [],
+        comments: []
       }
     ]).run(conn))
     .then(() => console.log('Done seeding DB!'))
