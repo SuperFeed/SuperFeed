@@ -42,6 +42,7 @@ export const handler = async function ({ author, accessToken, body, img }) {
     body,
     imgPath,
     likes: [],
+    comments: [],
     created: new Date()
   }).run(conn)
 

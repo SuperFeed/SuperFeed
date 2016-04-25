@@ -13,7 +13,8 @@ export default class App extends Component {
 
     this.state = {
       posts: [],
-      loading: true
+      loading: true,
+      focus: false
     }
   }
 
@@ -27,8 +28,8 @@ export default class App extends Component {
     this.props.actions.getPosts()
   }
 
-  async likePost (id) {
-    await SF_API.post('likePost', {
+  async likePost (id, liked) {
+    await SF_API.post(!liked ? 'likePost' : 'unlikePost', {
       user: this.props.auth.id,
       accessToken: this.props.auth.accessToken,
       post: id
@@ -37,26 +38,31 @@ export default class App extends Component {
     this.props.actions.getPosts()
   }
 
-  async unlikePost (id) {
-    await SF_API.post('unlikePost', {
-      user: this.props.auth.id,
+  async createComment (id, body) {
+    await SF_API.post('createComment', {
+      author: this.props.auth.id,
       accessToken: this.props.auth.accessToken,
-      post: id
+      post: id,
+      body
     })
 
     this.props.actions.getPosts()
+  }
+
+  focusInput () {
+    this.refs.body.scrollIntoView()
   }
 
   render () {
-    return <div>
+    return <div ref='body'>
       <NavContainer>
         <div className='ui text container'>
           <CreatePostForm onSubmit={::this.createPost} />
-          <Feed user={this.props.auth.id} posts={this.props.app.posts} onLike={::this.likePost} />
+          <Feed user={this.props.auth.id} posts={this.props.app.posts} onLike={::this.likePost} onComment={::this.createComment} />
         </div>
       </NavContainer>
       <BottomNav>
-        <NavItem><i className='large write icon' /></NavItem>
+        <NavItem onClick={::this.focusInput}><i className='large write icon' /></NavItem>
         <NavItem><i className='large settings icon' /></NavItem>
       </BottomNav>
     </div>

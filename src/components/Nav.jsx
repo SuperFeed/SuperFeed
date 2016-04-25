@@ -2,7 +2,7 @@ import React from 'react'
 
 const NUMS = ['zero', 'one', 'two', 'three', 'four']
 
-export const NavItem = ({ children }) => <a className='item'>{children}</a>
+export const NavItem = ({ children, onClick }) => <a className='item' onClick={onClick}>{children}</a>
 
 const navBarStyles = {
   position: 'fixed',
