@@ -24,7 +24,7 @@ function getTweets () {
 
   return new Promise(function (resolve, reject) {
     twitterClient.get('search/tweets', {
-      geocode: '42.7299111,-73.6772041,1mi'
+      geocode: '42.7299111,-73.6772041,1mi', count: 25
     }, function (error, tweets) {
       if (error) reject(error)
       resolve(tweets.statuses.map((tweet) => ({
