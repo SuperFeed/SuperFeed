@@ -7,6 +7,11 @@ export default function Feed ({ user, posts, onLike, onComment }) {
   }
 
   return <div style={feedStyles}>
-    {posts.map((post) => <Post key={post.id} onLike={onLike} onComment={onComment} user={user} {...post} />)}
+    {posts.map((post) => {
+      if (!post.type) {
+        return <Post key={post.id} onLike={onLike} onComment={onComment} user={user} {...post} />
+      }
+      return null
+    })}
   </div>
 }
