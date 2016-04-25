@@ -36,7 +36,7 @@ const config = {
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
         STATIC: JSON.stringify(process.env.STATIC || process.env.NODE_ENV || 'local'),
-        FB_ENV: JSON.stringify(process.env.FB_ENV || proess.env.NODE_ENV || 'local')
+        FB_ENV: JSON.stringify(process.env.FB_ENV || process.env.NODE_ENV || 'local')
       }
     })
   ],
