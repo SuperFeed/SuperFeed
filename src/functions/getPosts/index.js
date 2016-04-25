@@ -31,6 +31,7 @@ function getTweets () {
         type: 'twitter',
         id: tweet.id,
         author: tweet.user.id,
+        avatar: tweet.user.profile_image_url,
         name: tweet.user.name,
         body: tweet.text,
         created: tweet.created_at
