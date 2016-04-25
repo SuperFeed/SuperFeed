@@ -40,8 +40,8 @@ export default class App extends Component {
       <Container>
         <div className='ui container'>
           <input value={this.state.createPostText} onChange={::this.handleChange('createPostText')} />
+        <input type='file' name='image' accept='image/*'>
           <button className='ui button' onClick={::this.createPost}>Create Post!</button>
-          <button className='ui button'>Upload Image</button>
           {posts}
           <p>Auth: {JSON.stringify(this.props.auth)}</p>
         </div>
