@@ -34,7 +34,7 @@ const GLOBAL_STYLES = `
   }
 `
 
-let app = soular('*')
+soular('*')
 .use(cors)
 .use(ping)
 .use(serveStatic('', DEBUG ? 'resources/static' : 'static'))

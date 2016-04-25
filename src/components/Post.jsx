@@ -23,14 +23,14 @@ export default class Post extends Component {
   }
 
   render () {
-    const { user, id, author, name, body, likes, comments } = this.props
+    const { user, author, name, body, likes, comments } = this.props
 
     const liked = likes.includes(user)
 
     return <div className='ui fluid card'>
       <div className='content'>
         <img className='left floated mini ui circular image' src={`https://graph.facebook.com/v2.6/${author}/picture?type=square&height=200`} />
-        <span className="right floated">
+        <span className='right floated'>
           <i className={`${liked ? 'active' : ''} like icon`} onClick={::this.onLike}></i>
           {likes.length}
         </span>
@@ -39,7 +39,7 @@ export default class Post extends Component {
       </div>
       {!comments.length ? null : <div className='extra content'>
         <div className='ui feed'>
-          {comments.map(c =>
+          {comments.map((c) =>
             <div className='event' key={c.body}>
               <div className='label'><img src={`https://graph.facebook.com/v2.6/${c.author}/picture?type=square&height=200`} /></div>
               <div className='content'>
@@ -54,13 +54,13 @@ export default class Post extends Component {
           )}
         </div>
       </div>}
-      <div className="extra content">
-        <div className="ui large transparent left icon input" style={{ width: '100%' }}>
-          <i className="comment outline icon"></i>
-          <input style={{ fontSize: 16 }} type="text" placeholder="Add Comment..." value={this.state.input} onChange={::this.handleChange} />
+      <div className='extra content'>
+        <div className='ui large transparent left icon input' style={{ width: '100%' }}>
+          <i className='comment outline icon'></i>
+          <input style={{ fontSize: 16 }} type='text' placeholder='Add Comment...' value={this.state.input} onChange={::this.handleChange} />
           {this.state.input === ''
             ? null
-            : <span className="right floated"><i className="share icon" onClick={::this.onComment}></i></span>
+            : <span className='right floated'><i className='share icon' onClick={::this.onComment}></i></span>
           }
         </div>
       </div>
