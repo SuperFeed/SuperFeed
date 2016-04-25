@@ -45,9 +45,7 @@ soular('*')
   const history = syncHistoryWithStore(memoryHistory, store)
 
   const appScript = process.env.NODE_ENV === 'production'
-    ? process.env.STATIC === 'local'
-      ? require('./stats').main
-      : '//static.superfeed.xyz/' + require('./stats').main
+    ? require('./stats').main
     : 'app.js'
 
   return router({ history, routes }, (content) => {

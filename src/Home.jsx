@@ -3,7 +3,7 @@ import Login from './Login'
 
 const styles = {
   masthead: {
-    backgroundImage: process.env.NODE_ENV === 'production' ? 'url(https://static.superfeed.xyz/hero-bg-01.jpg)' : 'url(/hero-bg-01.jpg)',
+    backgroundImage: 'url(/hero-bg-01.jpg)',
     backgroundSize: 'cover',
     height: '98vh',
     marginBottom: '3rem'
