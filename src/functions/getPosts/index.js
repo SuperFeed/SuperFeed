@@ -43,9 +43,11 @@ function getTweets () {
 export const handler = async function (e) {
   let conn = await r.connect(DB)
   let cursor = await r.table('posts').orderBy({ index: r.desc('created') }).run(conn)
-  let results = await cursor.toArray()
+  let posts = await cursor.toArray()
 
   let tweets = await getTweets()
 
-  return { posts: results.concat(tweets) }
+  let results = posts.concat(tweets).sort((a, b) => (new Date(b.created) - new Date(a.created)))
+
+  return { posts: results }
 }
