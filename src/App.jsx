@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import re, { selector } from './actions'
 import { SF_API } from './api'
-import Nav, { Container } from './components/Nav'
-import Post from './components/Post'
+import { NavItem, BottomNav, NavContainer } from './components/Nav'
+import Feed from './components/Feed'
+import CreatePostForm from './components/CreatePostForm'
 
 @connect(selector, re.action)
 export default class App extends Component {
@@ -11,41 +12,59 @@ export default class App extends Component {
     super(props)
 
     this.state = {
-      createPostText: ''
+      posts: [],
+      loading: true,
+      focus: false
     }
   }
 
-  async createPost () {
+  async createPost (body) {
     await SF_API.post('createPost', {
+      body,
       author: this.props.auth.id,
-      accessToken: this.props.auth.accessToken,
-      body: this.state.createPostText,
-      img: this.state.createPostImage
+      accessToken: this.props.auth.accessToken
     })
 
     this.props.actions.getPosts()
   }
 
-  handleChange (key) {
-    return (e) => this.setState({ [key]: e.target.value })
+  async likePost (id, liked) {
+    await SF_API.post(!liked ? 'likePost' : 'unlikePost', {
+      user: this.props.auth.id,
+      accessToken: this.props.auth.accessToken,
+      post: id
+    })
+
+    this.props.actions.getPosts()
+  }
+
+  async createComment (id, body) {
+    await SF_API.post('createComment', {
+      author: this.props.auth.id,
+      accessToken: this.props.auth.accessToken,
+      post: id,
+      body
+    })
+
+    this.props.actions.getPosts()
+  }
+
+  focusInput () {
+    this.refs.body.scrollIntoView()
   }
 
   render () {
-    const posts = this.props.app.posts
-      ? this.props.app.posts.map((p) => <Post key={p.id} {...p}/>)
-      : null
-
-    return <div>
-      <Nav />
-      <Container>
-        <div className='ui container'>
-          <input value={this.state.createPostText} onChange={::this.handleChange('createPostText')} />
-        <input type='file' name='image' accept='image/*'>
-          <button className='ui button' onClick={::this.createPost}>Create Post!</button>
-          {posts}
-          <p>Auth: {JSON.stringify(this.props.auth)}</p>
+    return <div ref='body'>
+      <NavContainer>
+        <div className='ui text container'>
+          <CreatePostForm onSubmit={::this.createPost} />
+          <Feed user={this.props.auth.id} posts={this.props.app.posts} onLike={::this.likePost} onComment={::this.createComment} />
         </div>
-      </Container>
+      </NavContainer>
+      <BottomNav>
+        <NavItem onClick={::this.focusInput}><i className='large write icon' /></NavItem>
+        <NavItem><i className='large settings icon' /></NavItem>
+      </BottomNav>
     </div>
   }
 }

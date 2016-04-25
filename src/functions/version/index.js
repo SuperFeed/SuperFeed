@@ -6,12 +6,11 @@
  * @apiSuccess {String} version The current API version
  */
 
-import λ from 'apex.js'
 import r from 'rethinkdb'
 import { DB } from '../../db'
 
 export const method = 'GET'
-export const path = '/superfeed_version'
+export const path = '/api/version'
 
 export const handler = async function () {
   let conn = await r.connect(DB)
@@ -19,5 +18,3 @@ export const handler = async function () {
 
   return { version: number }
 }
-
-export default λ(handler)
