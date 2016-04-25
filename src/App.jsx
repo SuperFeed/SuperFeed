@@ -27,12 +27,32 @@ export default class App extends Component {
     this.props.actions.getPosts()
   }
 
+  async likePost (id) {
+    await SF_API.post('likePost', {
+      user: this.props.auth.id,
+      accessToken: this.props.auth.accessToken,
+      post: id
+    })
+
+    this.props.actions.getPosts()
+  }
+
+  async unlikePost (id) {
+    await SF_API.post('unlikePost', {
+      user: this.props.auth.id,
+      accessToken: this.props.auth.accessToken,
+      post: id
+    })
+
+    this.props.actions.getPosts()
+  }
+
   render () {
     return <div>
       <NavContainer>
         <div className='ui text container'>
           <CreatePostForm onSubmit={::this.createPost} />
-          <Feed posts={this.props.app.posts} />
+          <Feed user={this.props.auth.id} posts={this.props.app.posts} onLike={::this.likePost} />
         </div>
       </NavContainer>
       <BottomNav>

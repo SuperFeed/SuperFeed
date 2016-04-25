@@ -10,11 +10,11 @@ module.exports.createDatabase = function () {
     .catch(() => console.log('Table `meta` already exists!'))
     .then(() => r.db('sf').tableCreate('posts').run(conn))
     .catch(() => console.log('Table `posts` already exists!'))
+    .then(() => r.db('sf').table('posts').indexCreate('created').run(conn))
     .then(() => r.db('sf').table('meta').insert({
       id: 'version',
       number: 1
     }).run(conn))
-    // .catch(() => console.log('Document `version` already exists!'))
     .then(() => console.log('Done creating DB!'))
     .catch((e) => console.log(e.stack))
     .then(() => process.exit(0))
@@ -46,21 +46,24 @@ module.exports.seedDatabase = function () {
         name: 'Ruth Alaafcjfagcjc Bowerssky',
         body: 'This is a test post!',
         imgPath: null,
-        likes: []
+        likes: [],
+        created: new Date()
       },
       {
         author: '112958119101875',
         name: 'Ruth Alaafcjfagcjc Bowerssky',
         body: 'Wow! SF is so cool!',
         imgPath: null,
-        likes: []
+        likes: [],
+        created: new Date()
       },
       {
         author: '134704483590586',
         name: 'Linda Alaaecajeecgb Okelolason',
         body: 'meh, sf is ok',
         imgPath: null,
-        likes: []
+        likes: [],
+        created: new Date()
       }
     ]).run(conn))
     .then(() => console.log('Done seeding DB!'))

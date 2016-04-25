@@ -16,7 +16,7 @@ export const path = '/api/getPosts'
 
 export const handler = async function (e) {
   let conn = await r.connect(DB)
-  let cursor = await r.table('posts').run(conn)
+  let cursor = await r.table('posts').orderBy({ index: r.desc('created') }).run(conn)
   let results = await cursor.toArray()
 
   return { posts: results }

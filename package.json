@@ -34,7 +34,8 @@
     "prod": "../node_modules/.bin/cross-env STATIC=local NODE_ENV=production PORT=3000 node server.js",
     "create-db": "node -e \"require('./db').createDatabase()\"",
     "drop-db": "node -e \"require('./db').dropDatabase()\"",
-    "seed-db": "node -e \"require('./db').seedDatabase()\""
+    "seed-db": "node -e \"require('./db').seedDatabase()\"",
+    "setup-db": "npm run drop-db && npm run create-db && npm run seed-db"
   },
   "devDependencies": {
     "apidoc": "^0.15.1",
