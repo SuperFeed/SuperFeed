@@ -47,6 +47,7 @@ module.exports.seedDatabase = function () {
         body: 'This is a test post!',
         imgPath: null,
         likes: [],
+        comments: [],
         created: new Date()
       },
       {
@@ -55,6 +56,7 @@ module.exports.seedDatabase = function () {
         body: 'Wow! SF is so cool!',
         imgPath: null,
         likes: [],
+        comments: [],
         created: new Date()
       },
       {
@@ -63,6 +65,7 @@ module.exports.seedDatabase = function () {
         body: 'meh, sf is ok',
         imgPath: null,
         likes: [],
+        comments: [],
         created: new Date()
       }
     ]).run(conn))

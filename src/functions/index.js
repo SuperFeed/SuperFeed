@@ -10,5 +10,6 @@ export default [
   require('./getPosts'),
   require('./likePost'),
   require('./unlikePost'),
-  require('./version')
+  require('./version'),
+  require('./createComment')
 ].map(useFunc)
