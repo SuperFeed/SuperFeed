@@ -23,33 +23,27 @@ export default class CreatePostForm extends Component {
   }
 
   onDrop (file) {
+    var self = this
     var reader = new FileReader()
     reader.addEventListener("load", function () {
-      this.setState({image: reader.result})
+      self.setState({image: reader.result})
       console.log(reader.result)
     }, false);
     if(file){
       reader.readAsDataURL(file[0])
-      //console.log(reader)
     }
-    //console.log("Recieved File: ", file)
-    //this.state.image = reader.result
-    //console.log(this.state.image)
   }
 
   onClick (file){
+    var self = this
     var reader = new FileReader()
     reader.addEventListener("load", function () {
-      image: reader.result;
+      self.setState({image: reader.result})
       console.log(reader.result)
     }, false);
     if(file){
       reader.readAsDataURL(file[0])
-      //console.log(reader)
     }
-    //console.log("Recieved File: ", file)
-    //this.state.image = reader.result
-    //console.log(this.state.image)
   }
 
   render () {
