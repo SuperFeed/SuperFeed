@@ -16,9 +16,14 @@ export const method = 'GET'
 export const path = '/api/getPosts'
 
 function getTweets () {
+  if (!process.env.TWITTER_CONSUMER_KEY || !process.env.TWITTER_CONSUMER_SECRET) {
+    console.log('Warning: Twitter environment variables not defined')
+    return []
+  }
+
   const twitterClient = new Twitter({
-    consumer_key: 'lmkXpy3S1Tw5olujvoG3H1kDJ',
-    consumer_secret: 'OESLaYYxrtppzRYGajPDgRTyjeBW1P52Ne3UpMFt6CNYZZ9548',
+    consumer_key: process.env.TWITTER_CONSUMER_KEY,
+    consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
     access_token_key: '', access_token_secret: ''
   })
 
