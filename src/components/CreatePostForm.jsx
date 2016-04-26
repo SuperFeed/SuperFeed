@@ -23,10 +23,9 @@ export default class CreatePostForm extends Component {
   }
 
   onDrop (file) {
-    var self = this
     var reader = new FileReader()
-    reader.addEventListener("load", function () {
-      self.setState({image: reader.result})
+    reader.addEventListener("load", () => {
+      this.setState({image: reader.result})
       console.log(reader.result)
     }, false);
     if(file){
@@ -35,10 +34,9 @@ export default class CreatePostForm extends Component {
   }
 
   onClick (file){
-    var self = this
     var reader = new FileReader()
-    reader.addEventListener("load", function () {
-      self.setState({image: reader.result})
+    reader.addEventListener("load", () => {
+      this.setState({image: reader.result})
       console.log(reader.result)
     }, false);
     if(file){
