@@ -15,7 +15,7 @@ import { DB } from '../../db'
 export const method = 'GET'
 export const path = '/api/getPosts'
 
-function getTweets () {
+function getTweets ({latitude, longitude}) {
   if (!process.env.TWITTER_CONSUMER_KEY || !process.env.TWITTER_CONSUMER_SECRET) {
     console.log('Warning: Twitter environment variables not defined')
     return []
@@ -29,7 +29,8 @@ function getTweets () {
 
   return new Promise(function (resolve, reject) {
     twitterClient.get('search/tweets', {
-      geocode: '42.7299111,-73.6772041,1mi', count: 25
+      geocode: (latitude + ',' + longitude + ',1mi'),
+      count: 25
     }, function (error, tweets) {
       if (error) reject(error)
       resolve(tweets.statuses.map((tweet) => ({
@@ -50,7 +51,10 @@ export const handler = async function (e) {
   let cursor = await r.table('posts').orderBy({ index: r.desc('created') }).run(conn)
   let posts = await cursor.toArray()
 
-  let tweets = await getTweets()
+  let tweets = await getTweets({
+    latitude: 42.7299111,
+    longitude: -73.6772041
+  })
 
   let results = posts.concat(tweets).sort((a, b) => (new Date(b.created) - new Date(a.created)))
 
