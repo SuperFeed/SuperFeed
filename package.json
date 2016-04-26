@@ -75,6 +75,7 @@
     "isomorphic-fetch": "^2.2.1",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
+    "react-dropzone": "^3.4.0",
     "react-facebook-login": "SuperFeed/react-facebook-login",
     "react-redux": "^4.4.0",
     "react-router": "^2.0.1",
