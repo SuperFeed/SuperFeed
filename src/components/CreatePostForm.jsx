@@ -24,7 +24,7 @@ export default class CreatePostForm extends Component {
 
   onDrop (file) {
     console.log("Recieved File: ", file)
-    //this.state.image
+    this.state.image = file
   }
 
   render () {
