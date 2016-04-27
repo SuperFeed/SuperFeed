@@ -9,6 +9,7 @@
  */
 
 import r from 'rethinkdb'
+import i from 'instagram-node'
 import Twitter from 'twitter'
 import { DB } from '../../db'
 
@@ -47,6 +48,31 @@ function getTweets ({latitude, longitude}) {
   })
 }
 
+function getIns (location) {
+  let ig = i.instagram()
+
+  ig.use({ access_token: '3178355401.1677ed0.117cca9f55c847018b161e79287dcac3' })
+
+  return new Promise(function (resolve, reject) {
+    let options = {}
+    ig.location_media_recent(location, [options], function (err, result, pagination, remaining, limit) {
+      if (err) reject(console.log(err))
+      resolve(result.map(
+        (insta) => ({
+          type: 'instagram',
+          id: insta.id,
+          image: insta.images.standard_resolution.url,
+          author: insta.user.id,
+          name: insta.user.username,
+          avator: insta.user.profile_picture,
+          body: insta.caption,
+          created: insta.created_time
+        })
+      ))
+    })
+  })
+}
+
 export const handler = async function (e) {
   let conn = await r.connect(DB)
   let cursor = await r.table('posts').orderBy({ index: r.desc('created') }).run(conn)
@@ -57,7 +83,9 @@ export const handler = async function (e) {
     longitude: -73.6772041
   })
 
-  let results = posts.concat(tweets).sort((a, b) => (new Date(b.created) - new Date(a.created)))
+  let ins = await getIns('219471895') // it is location_id of troy
+
+  let results = posts.concat(tweets).concat(ins).sort((a, b) => (new Date(b.created) - new Date(a.created)))
 
   return { posts: results }
 }
