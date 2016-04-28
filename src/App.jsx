@@ -18,11 +18,12 @@ export default class App extends Component {
     }
   }
 
-  async createPost (body) {
+  async createPost (body, img) {
     await SF_API.post('createPost', {
       body,
       author: this.props.auth.id,
-      accessToken: this.props.auth.accessToken
+      accessToken: this.props.auth.accessToken,
+      img
     })
 
     this.props.actions.getPosts()

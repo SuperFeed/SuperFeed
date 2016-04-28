@@ -17,7 +17,6 @@ export default class CreatePostForm extends Component {
 
   onSubmit (e) {
     e.preventDefault()
-
     this.props.onSubmit(this.state.text, this.state.image)
     this.setState({ text: '', image: '' })
   }
@@ -26,7 +25,6 @@ export default class CreatePostForm extends Component {
     var reader = new FileReader()
     reader.addEventListener("load", () => {
       this.setState({image: reader.result})
-      console.log(reader.result)
     }, false);
     if(file){
       reader.readAsDataURL(file[0])
@@ -37,7 +35,6 @@ export default class CreatePostForm extends Component {
     var reader = new FileReader()
     reader.addEventListener("load", () => {
       this.setState({image: reader.result})
-      console.log(reader.result)
     }, false);
     if(file){
       reader.readAsDataURL(file[0])
