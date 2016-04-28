@@ -35,7 +35,7 @@ export default class Post extends Component {
           {likes.length}
         </span>
         <div className='meta'>{name}</div>
-        {imgPath ? <img className='image ui' src={imgPath}/> : ''}
+        {imgPath ? <img className='image ui' src={imgPath}/> : null}
         <div className='description'>{body}</div>
       </div>
       {!comments.length ? null : <div className='extra content'>
