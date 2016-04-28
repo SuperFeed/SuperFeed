@@ -44,7 +44,7 @@ export default class CreatePostForm extends Component {
   render () {
     return <form className='ui form' onSubmit={::this.onSubmit}>
       <textarea className='ui top attached segment' rows='3' style={{ resize: 'none' }} value={this.state.text} onChange={::this.onFormChange} />
-    <Dropzone className='ui left attached segment' rows='1' onClick={::this.onClick} onDrop={::this.onDrop} accept='image/*'><i className='large photo icon'/></Dropzone>
+    <Dropzone className='ui fluid attached blue button' rows='1' onClick={::this.onClick} onDrop={::this.onDrop} accept='image/*'><i className='large photo icon'/></Dropzone>
       <button className='ui fluid bottom attached blue button' type='submit'><i className='large send icon' /></button>
     </form>
   }
