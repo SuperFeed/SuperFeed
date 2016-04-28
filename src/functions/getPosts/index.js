@@ -34,7 +34,7 @@ function getTweets ({latitude, longitude}) {
       geocode: (latitude + ',' + longitude + ',1mi'),
       count: 25
     }, function (error, tweets) {
-      if (error) reject(error)
+      if (error) return reject(error)
       resolve(tweets.statuses.map((tweet) => ({
         type: 'twitter',
         id: tweet.id,
@@ -55,27 +55,29 @@ function getLocationId (location) {
 
   return new Promise(function (resolve, reject) {
     let options = {}
-    ig.location_search(location, [options], function (err, result, pagination, remaining, limit) {
-      if (err) reject(console.error(err))
+    ig.location_search(location, options, function (err, result, pagination, remaining, limit) {
+      if (err) return reject(console.error(err))
       resolve(result[0].id)
     })
   })
 }
 
-function getIns (location) {
+async function getIns (location) {
   if (!process.env.INSTAGRAM_ACCESS_TOKEN) {
     console.error('Warning: Instagram environment variables not defined')
     return Promise.resolve([])
   }
-  
+
+  let locationId = await getLocationId(location)
+
   let ig = i.instagram()
 
   ig.use({ access_token: process.env.INSTAGRAM_ACCESS_TOKEN })
 
   return new Promise(function (resolve, reject) {
     let options = {}
-    ig.location_media_recent(location, [options], function (err, result, pagination, remaining, limit) {
-      if (err) reject(console.error(err))
+    ig.location_media_recent(locationId, options, function (err, result, pagination, remaining, limit) {
+      if (err) return reject(console.error(err))
       resolve(result.map(
         (insta) => ({
           type: 'instagram',
@@ -102,12 +104,10 @@ export const handler = async function (e) {
     longitude: -73.6772041
   })
 
-  let locationId = await getLocationId({
+  let ins = await getIns({
     lat: 42.7299111,
     lng: -73.6772041
   })
-
-  let ins = await getIns(locationId)
 
   let results = posts.concat(tweets).concat(ins).sort((a, b) => (new Date(b.created) - new Date(a.created)))
 
