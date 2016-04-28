@@ -56,7 +56,7 @@ export default class App extends Component {
 
   componentDidMount () {
     if (!this.props.auth.accessToken) {
-      browserHistory.push('/')
+      browserHistory.push('/login')
     }
   }
 
