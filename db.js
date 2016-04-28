@@ -11,6 +11,7 @@ module.exports.createDatabase = function () {
     .then(() => r.db('sf').tableCreate('posts').run(conn))
     .catch(() => console.log('Table `posts` already exists!'))
     .then(() => r.db('sf').table('posts').indexCreate('created').run(conn))
+    .then(() => r.db('sf').table('posts').indexCreate('location', { geo: true }).run(conn))
     .then(() => r.db('sf').table('meta').insert({
       id: 'version',
       number: 1
@@ -48,7 +49,8 @@ module.exports.seedDatabase = function () {
         imgPath: null,
         likes: [],
         comments: [],
-        created: new Date()
+        created: new Date(),
+        location: r.point(42.7299111, -73.6772041)
       },
       {
         author: '112958119101875',
@@ -57,7 +59,8 @@ module.exports.seedDatabase = function () {
         imgPath: null,
         likes: [],
         comments: [],
-        created: new Date()
+        created: new Date(),
+        location: r.point(42.7299111, -73.6772041)
       },
       {
         author: '134704483590586',
@@ -66,7 +69,8 @@ module.exports.seedDatabase = function () {
         imgPath: null,
         likes: [],
         comments: [],
-        created: new Date()
+        created: new Date(),
+        location: r.point(42.7299111, -73.6772041)
       }
     ]).run(conn))
     .then(() => console.log('Done seeding DB!'))

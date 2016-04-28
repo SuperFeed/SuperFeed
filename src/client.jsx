@@ -5,6 +5,8 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import routes from './routes'
 import Container, { configureStore } from './Container'
 
+navigator.geolocation.getCurrentPosition(({ coords }) => console.info(coords))
+
 const store = configureStore()
 const history = syncHistoryWithStore(browserHistory, store)
 

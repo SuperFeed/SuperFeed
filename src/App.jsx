@@ -19,8 +19,11 @@ export default class App extends Component {
   }
 
   async createPost (body) {
+    let { coords: { latitude, longitude } } = await new Promise(resolve => navigator.geolocation.getCurrentPosition(resolve))
+
     await SF_API.post('createPost', {
       body,
+      coords: { latitude, longitude },
       author: this.props.auth.id,
       accessToken: this.props.auth.accessToken
     })
