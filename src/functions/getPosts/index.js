@@ -19,7 +19,7 @@ export const path = '/api/getPosts'
 function getTweets ({latitude, longitude}) {
   if (!process.env.TWITTER_CONSUMER_KEY || !process.env.TWITTER_CONSUMER_SECRET) {
     console.error('Warning: Twitter environment variables not defined')
-    return []
+    return Promise.resolve([])
   }
 
   const twitterClient = new Twitter({
@@ -63,6 +63,11 @@ function getLocationId (location) {
 }
 
 function getIns (location) {
+  if (!process.env.INSTAGRAM_ACCESS_TOKEN) {
+    console.error('Warning: Instagram environment variables not defined')
+    return Promise.resolve([])
+  }
+  
   let ig = i.instagram()
 
   ig.use({ access_token: process.env.INSTAGRAM_ACCESS_TOKEN })
