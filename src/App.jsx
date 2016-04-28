@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { browserHistory } from 'react-router'
 import re, { selector } from './actions'
 import { SF_API } from './api'
 import { NavItem, BottomNav, NavContainer } from './components/Nav'
@@ -51,6 +52,12 @@ export default class App extends Component {
 
   focusInput () {
     this.refs.body.scrollIntoView()
+  }
+
+  componentDidMount () {
+    if (!this.props.auth.accessToken) {
+      browserHistory.push('/login')
+    }
   }
 
   render () {
