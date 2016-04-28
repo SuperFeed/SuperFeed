@@ -14,10 +14,17 @@ import { DB } from '../../db'
 export const method = 'GET'
 export const path = '/api/getPosts'
 
+function fetchImg(imgPath) {
+  var imgString = ""
+  imgString = require('fs').readFileSync(imgPath,'utf8')
+  return imgString
+}
+
 export const handler = async function (e) {
   let conn = await r.connect(DB)
   let cursor = await r.table('posts').orderBy({ index: r.desc('created') }).run(conn)
   let results = await cursor.toArray()
+  results.map((result) => result.imgPath = ( result.imgPath ? fetchImg(result.imgPath) : result.imgPath ))
 
   return { posts: results }
 }
