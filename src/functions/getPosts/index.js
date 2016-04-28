@@ -16,6 +16,11 @@ import { DB } from '../../db'
 export const method = 'GET'
 export const path = '/api/getPosts'
 
+function fetchImg (imgPath) {
+  var imgString = require('fs').readFileSync(imgPath, 'utf8')
+  return imgString
+}
+
 function getTweets ({latitude, longitude}) {
   if (!process.env.TWITTER_CONSUMER_KEY || !process.env.TWITTER_CONSUMER_SECRET) {
     console.error('Warning: Twitter environment variables not defined')
@@ -98,6 +103,7 @@ export const handler = async function (e) {
   let conn = await r.connect(DB)
   let cursor = await r.table('posts').orderBy({ index: r.desc('created') }).run(conn)
   let posts = await cursor.toArray()
+  posts.forEach(function (result) { result.imgPath = result.imgPath ? fetchImg(result.imgPath) : result.imgPath })
 
   let tweets = await getTweets({
     latitude: 42.7299111,
