@@ -60,7 +60,6 @@
     "mkdirp": "^0.5.1",
     "nodemon": "^1.9.0",
     "parallelshell": "^2.0.0",
-    "rethinkdb": "^2.3.0",
     "rimraf": "^2.5.2",
     "snazzy": "^3.0.0",
     "standard": "^6.0.8",
@@ -72,6 +71,7 @@
   "dependencies": {
     "babel-polyfill": "^6.5.0",
     "babel-runtime": "^6.6.1",
+    "instagram-node": "^0.5.8",
     "isomorphic-fetch": "^2.2.1",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
@@ -91,6 +91,8 @@
     "redux-reaction": "^0.1.0",
     "redux-slider-monitor": "^1.0.3",
     "reqq": "^0.2.1",
-    "soular": "^0.3.7"
+    "rethinkdb": "^2.3.0",
+    "soular": "^0.3.7",
+    "twitter": "^1.2.5"
   }
 }
