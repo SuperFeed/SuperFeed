@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { browserHistory } from 'react-router'
 import re, { selector } from './actions'
 import { SF_API } from './api'
 import { NavItem, BottomNav, NavContainer } from './components/Nav'
@@ -18,11 +19,12 @@ export default class App extends Component {
     }
   }
 
-  async createPost (body) {
+  async createPost (body, img) {
     await SF_API.post('createPost', {
       body,
       author: this.props.auth.id,
-      accessToken: this.props.auth.accessToken
+      accessToken: this.props.auth.accessToken,
+      img
     })
 
     this.props.actions.getPosts()
@@ -51,6 +53,12 @@ export default class App extends Component {
 
   focusInput () {
     this.refs.body.scrollIntoView()
+  }
+
+  componentDidMount () {
+    if (!this.props.auth.accessToken) {
+      browserHistory.push('/login')
+    }
   }
 
   render () {

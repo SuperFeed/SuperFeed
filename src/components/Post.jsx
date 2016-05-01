@@ -23,7 +23,7 @@ export default class Post extends Component {
   }
 
   render () {
-    const { user, author, name, body, likes, comments } = this.props
+    const { user, author, name, body, likes, comments, imgPath } = this.props
 
     const liked = likes.includes(user)
 
@@ -35,6 +35,7 @@ export default class Post extends Component {
           {likes.length}
         </span>
         <div className='meta'>{name}</div>
+        {imgPath ? <img className='image ui' src={imgPath}/> : null}
         <div className='description'>{body}</div>
       </div>
       {!comments.length ? null : <div className='extra content'>
