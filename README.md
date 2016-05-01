@@ -1,5 +1,20 @@
 # Master repo for SuperFeed [![Stories in Ready](https://badge.waffle.io/SuperFeed/SuperFeed.svg?label=ready&title=Ready)](http://waffle.io/SuperFeed/SuperFeed) [![Circle CI](https://circleci.com/gh/SuperFeed/SuperFeed.svg?style=svg)](https://circleci.com/gh/SuperFeed/SuperFeed) [![Code Climate](https://codeclimate.com/github/SuperFeed/SuperFeed/badges/gpa.svg)](https://codeclimate.com/github/SuperFeed/SuperFeed)
 
+## Fast install
+
+Requires:
+* Git
+* Node
+* RethinkDB
+
+```
+curl https://raw.githubusercontent.com/SuperFeed/SuperFeed/master/script/web-install | sh
+rethink -d _db --deamon
+npm run dev
+```
+
+This starts the app in dev mode. To get a production environment, read further.
+
 ## Tech Stack
 * React
 * Redux
@@ -54,9 +69,9 @@ You also need to run RethinkDB in another shell, or somewhere. Run this with
 
 ### API
 
-The API is contained the `/functions` directory. Each function has a folder with an `index.html` file
-that defines the endpoint, method, and handler. The `run-api.js` script runs the API for local development.
-The server is reloaded on changes with nodemon. The API can be started standalone with `npm run dev-api`.
+The API is contained the `src/functions` directory. Each function has a folder with an `index.html` file
+that defines the endpoint, method, and handler. The `src/functions/index.js` script runs the API for local development.
+The server is reloaded on changes with nodemon.
 
 ### Server
 
@@ -76,6 +91,9 @@ You can build the app for production with
 ```
 npm  run build
 ```
+
+This build a target into the `target` directory. The `target` directory will contain
+everything needed to run the app on a new server.
 
 # Environment Variables Used
 

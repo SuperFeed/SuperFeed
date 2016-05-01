@@ -1,0 +1,4 @@
+git clone https://github.com/SuperFeed/SuperFeed.git
+cd SuperFeed
+npm install
+echo "Run with 'npm run dev' or see README.md for more info"
