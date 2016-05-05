@@ -20,7 +20,7 @@ export default class App extends Component {
   }
 
   async createPost (body, img) {
-    let { coords: { latitude, longitude } } = await new Promise(resolve => navigator.geolocation.getCurrentPosition(resolve))
+    let { coords: { latitude, longitude } } = await new Promise((resolve) => navigator.geolocation.getCurrentPosition(resolve))
 
     await SF_API.post('createPost', {
       body,

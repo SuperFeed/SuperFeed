@@ -40,6 +40,8 @@ For a specific platform checkout https://www.rethinkdb.com/docs/install/.
 
 ## Setting up the database
 
+Make sure RethinkDB is running first.
+
 Create the database and tables with
 
 ```
