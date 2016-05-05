@@ -25,7 +25,7 @@ function storeImg (img) {
   return Promise.resolve(imgPath)
 }
 
-export const handler = async function ({ author, accessToken, body, img }) {
+export const handler = async function ({ author, accessToken, body, img, coords: { latitude, longitude } }) {
   let { id, name } = await fetch(`https://graph.facebook.com/me?access_token=${accessToken}`).then((res) => res.json())
 
   if (id !== author) {
@@ -43,7 +43,8 @@ export const handler = async function ({ author, accessToken, body, img }) {
     imgPath,
     likes: [],
     comments: [],
-    created: new Date()
+    created: new Date(),
+    location: r.point(latitude, longitude)
   }).run(conn)
 
   return { id: res.generated_keys[0] }
